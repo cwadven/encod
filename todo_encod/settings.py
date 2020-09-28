@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'board',
+    'accounts',
     'django.contrib.sites',
     'allauth',
     #회원 삭제를 위해서 필요
@@ -49,6 +50,18 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
+# 회원가입 시, 입력 요소 변경
+AUTH_USER_MODEL = 'accounts.Profile' #유저 모델로 사용하기
+
+REST_AUTH_SERIALIZERS = { #response로 보넬 정보들이 적혀있는 Serializer
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.ProfileSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = { 'REGISTER_SERIALIZER': 'accounts.serializers.ProfileSerializer', } #회원가입용 SERIALIZER
+
+ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter' #마지막으로 회원가입용 SERIALIZER를 적용시켜주기 위한 단계
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
