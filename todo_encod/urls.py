@@ -6,5 +6,5 @@ import board.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     #게시글 접근
-    path('board/', include('board.urls')),
+    path('', include('board.urls')),
 ]
