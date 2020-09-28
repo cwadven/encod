@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #게시글 접근
     path('', include('board.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
