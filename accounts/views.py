@@ -1,3 +1,31 @@
-from django.shortcuts import render
+from .models import *
+from .serializers import *
+import json
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework import permissions
+from django.core import serializers
 
-# Create your views here.
+class _UpdateView(APIView):
+    #로그인 한 사람만 접근 가능
+    permission_classes = (permissions.IsAuthenticated,)
+
+    #수정하기
+    def put(self, request):
+        profile_information = Profile.objects.get(username=self.request.user)
+        nickname = request.data.get("nickname")
+        data = {'nickname': nickname}
+
+        #만약에 양식에 맞으면!
+        serializer = ProfileUpdateSerializer(data=data)
+        if serializer.is_valid():
+            #닉네임 수정하기
+            profile_information.nickname = serializer.data['nickname']
+            profile_information.save()
+            data = serializers.serialize('json', [profile_information,], fields=["username", "email", "nickname"])
+            data = json.loads(data)
+            #수정 완료하면 수정된 정보 보여주기
+            return Response(data[0]["fields"], status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
