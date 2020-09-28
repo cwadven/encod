@@ -10,4 +10,4 @@ from .permissions import IsOwnerOrReadOnly
 class BoardViewset(viewsets.ModelViewSet):
     queryset = Board.objects.all() #id만큼 가져오기
     serializer_class = BoardSerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
