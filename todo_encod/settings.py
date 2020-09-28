@@ -40,7 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'board',
+    'django.contrib.sites',
+    'allauth',
+    #회원 삭제를 위해서 필요
+    'allauth.socialaccount',
+    'allauth.account',
+    'rest_auth.registration',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -97,6 +105,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
 }
+
+#ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
+
+#ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+REST_USE_JWT = True
+ACCOUNT_LOGOUT_ON_GET = True
 
 JWT_AUTH = {
     'JWT_SECRET_KEY': SECRET_KEY,
