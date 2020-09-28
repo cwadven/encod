@@ -3,5 +3,5 @@ from rest_framework import serializers
 
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Board
-        field = ('__all__')
+        model = Board
+        fields = ('__all__')
