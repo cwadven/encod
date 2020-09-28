@@ -84,9 +84,10 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[
-        #'rest_framework.authentication.BasicAuthentication', #베이직도 가능하고
+        'rest_framework.authentication.BasicAuthentication', #베이직도 가능하고
+        'rest_framework.authentication.SessionAuthentication',
         # for browsable api view usage
-        'rest_framework.authentication.TokenAuthentication', #토큰도 가능하게 일단
+        # 'rest_framework.authentication.TokenAuthentication', #토큰도 가능하게 일단
     ],
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
