@@ -41,12 +41,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'board',
     'accounts',
+
+    #회원 관리
     'django.contrib.sites',
     'allauth',
     #회원 삭제를 위해서 필요
     'allauth.socialaccount',
     'allauth.account',
     'rest_auth.registration',
+
+    #cors 문제 해결
+    'corsheaders',
 ]
 
 SITE_ID = 1
@@ -71,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'todo_encod.urls'
@@ -174,3 +180,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# CORS 접속 가능한 리스트 추가
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:8000"
+]
