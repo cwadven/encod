@@ -7,12 +7,16 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from django.core import serializers
 
+
+#views는 받은 값 처리하기 serializer는 forms 같은 규격
 class _UpdateView(APIView):
     #로그인 한 사람만 접근 가능
+    serializer_class = ProfileUpdateSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     #수정하기
     def put(self, request):
+        #r값을 request.data.get으로 가져오기
         profile_information = Profile.objects.get(username=self.request.user)
         nickname = request.data.get("nickname")
         data = {'nickname': nickname}
