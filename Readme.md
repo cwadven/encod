@@ -185,8 +185,8 @@ http://127.0.0.1:8000/rest-auth/password/change/
 - Authorization : jwt ~~~~~~~~~~~
 
 **[파라미터]** --> form-data
-- password1 : 비밀번호
-- password2 : 비밀번호 확인
+- new_password1 : 비밀번호
+- new_password2 : 비밀번호 확인
 
 #### Response
 {
