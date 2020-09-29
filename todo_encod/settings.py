@@ -181,6 +181,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+APPEND_SLASH=False
+
 # CORS 접속 가능한 리스트 추가
 CORS_ORIGIN_ALLOW_ALL = False
 
