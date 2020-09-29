@@ -16,7 +16,7 @@
 
 ## API 사용 방법
 ### 회원가입 (POST)
-http://127.0.0.1:8000/rest-auth/registration/
+http://127.0.0.1:8000/rest-auth/registration
 
 #### Request
 **[파라미터]** --> form-data
@@ -36,7 +36,7 @@ user : { "username": "아이디", "email":"이메일", "nickname": "닉네임" }
 <hr>
 
 ### 로그인 (POST)
-http://127.0.0.1:8000/rest-auth/login/
+http://127.0.0.1:8000/rest-auth/login
 **[파라미터]** --> form-data
 - username : 아이디
 - password : 비밀번호
@@ -47,7 +47,7 @@ http://127.0.0.1:8000/rest-auth/login/
 <hr>
 
 ### 글목록 가져오기 (GET)
-http://localhost:8000/board/
+http://localhost:8000/board
 
 #### Response
 {
@@ -66,7 +66,7 @@ http://localhost:8000/board/
 <hr>
 
 ### 글내용 가져오기 (GET)
-http://localhost:8000/board/1/
+http://localhost:8000/board/(boardId)
 
 #### Response
 {
@@ -85,7 +85,7 @@ http://localhost:8000/board/1/
 <hr>
 
 ### 글쓰기 (POST)
-http://localhost:8000/board/
+http://localhost:8000/board
 ❌ 제약조건 : jwt 토큰으로 글 쓰기 가능
 
 #### Request
@@ -115,7 +115,7 @@ Authorization : jwt ~~~~~~~~~~~
 <hr>
 
 ### 글삭제 (DELETE)
-http://localhost:8000/board/1/
+http://localhost:8000/board/(boardId)
 ❌ 제약조건 : 작성자만이 삭제 가능
 
 #### Request
@@ -128,7 +128,7 @@ NONE
 <hr>
 
 ### 글수정 (PUT)
-http://localhost:8000/board/1/
+http://localhost:8000/board/(boardId)
 ❌ 제약조건 : 작성자만이 수정 가능
 
 #### Request
@@ -157,7 +157,7 @@ http://localhost:8000/board/1/
 
 ## 추가 기능
 ### 회원정보 수정 (PUT)
-http://localhost:8000/accounts/user/
+http://localhost:8000/accounts/user
 ❌ 제약조건 : 로그인 한 사람만 접근 가능
 
 #### Request
@@ -177,7 +177,7 @@ http://localhost:8000/accounts/user/
 <hr>
 
 ### 비밀번호 수정 (POST)
-http://127.0.0.1:8000/rest-auth/password/change/
+http://127.0.0.1:8000/rest-auth/password/change
 ❌ 제약조건 : 로그인 한 사람만 접근 가능
 
 #### Request
@@ -196,7 +196,7 @@ http://127.0.0.1:8000/rest-auth/password/change/
 <hr>
 
 ### 로그아웃 (POST)
-http://127.0.0.1:8000/rest-auth/logout/
+http://127.0.0.1:8000/rest-auth/logout
 
 #### Request
 **[해더s]**
