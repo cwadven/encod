@@ -154,3 +154,55 @@ http://localhost:8000/board/1/
     "created_at": "생성시간",
     "updated_at": "수정시간"
 } 
+
+## 추가 기능
+### 회원정보 수정 (PUT)
+http://localhost:8000/accounts/user/
+❌ 제약조건 : 로그인 한 사람만 접근 가능
+
+#### Request
+**[해더s]**
+- Authorization : jwt ~~~~~~~~~~~
+
+**[파라미터]** --> form-data
+- nickname : 닉네임
+
+#### Response
+{
+    "username": "아이디",
+    "email": "이메일",
+    "nickname": "닉네임"
+} 
+
+<hr>
+
+### 비밀번호 수정 (POST)
+http://127.0.0.1:8000/rest-auth/password/change/
+❌ 제약조건 : 로그인 한 사람만 접근 가능
+
+#### Request
+**[해더s]**
+- Authorization : jwt ~~~~~~~~~~~
+
+**[파라미터]** --> form-data
+- password1 : 비밀번호
+- password2 : 비밀번호 확인
+
+#### Response
+{
+    "detail": "New password has been saved."
+}
+
+<hr>
+
+### 로그아웃 (POST)
+http://127.0.0.1:8000/rest-auth/logout/
+
+#### Request
+**[해더s]**
+- Authorization : jwt ~~~~~~~~~~~
+
+#### Response
+{
+    "detail": "Successfully logged out."
+}
