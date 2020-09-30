@@ -105,8 +105,12 @@ WSGI_APPLICATION = 'todo_encod.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'encod',
+        'USER': 'encod',
+        'PASSWORD':'asdf1234!',
+        'HOST':'encod.cwo6g0vpzwnq.ap-northeast-2.rds.amazonaws.com',
+        'PORT':'3306',
     }
 }
 
