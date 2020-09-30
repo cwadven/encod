@@ -24,7 +24,7 @@ urlpatterns = [
     # path('api/token/', obtain_jwt_token),
     # path('api/token/verify/', verify_jwt_token),
     # path('api/token/refresh/', refresh_jwt_token),
-    path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
 
     #로그인
     # path("rest-auth/", include('rest_auth.urls')),
