@@ -3,6 +3,8 @@ from django.conf.urls import url
 from django.urls import path, include
 import board.urls
 import accounts.urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 from rest_auth.views import (
     LoginView, LogoutView, UserDetailsView, PasswordChangeView,
@@ -22,7 +24,7 @@ urlpatterns = [
     # path('api/token/', obtain_jwt_token),
     # path('api/token/verify/', verify_jwt_token),
     # path('api/token/refresh/', refresh_jwt_token),
-    # path('api-auth/', include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 
     #로그인
     # path("rest-auth/", include('rest_auth.urls')),
@@ -35,4 +37,6 @@ urlpatterns = [
     
     #회원가입
     path("rest-auth/registration", include('rest_auth.registration.urls')),
-]
+] 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
