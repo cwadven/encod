@@ -11,9 +11,35 @@ class UserSerializer(serializers.ModelSerializer): #author 안에 있는 정보�
         fields = ("id", "username", "nickname",)
 
 class VoteBoardSerializer(serializers.ModelSerializer):
+    voted = serializers.SerializerMethodField()
+
+    # 총 투표자 새기
+    voter_count = serializers.SerializerMethodField()
+
+    # boardid = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    # put을 할때 꼭 필요없다 라고 말하기
+    image = serializers.ImageField(required=False)
+    title = serializers.CharField(required=False)
+
     class Meta:
         model = VoteBoard
-        fields = ("__all__")
+        fields = ("id", "boardid", "title", "created_at", "updated_at", "voter_count", "voted", "image")
+
+    # 내가 투표를 했는지 안했는지 확인
+    def get_voted(self, obj):
+        # 회원이 아닐 경우 False로
+        try:
+            if self.context.get('request').user in obj.voter.all():
+                return True
+            else:
+                return False
+        except:
+            return False
+
+    def get_voter_count(self, obj): 
+        # 총 몇 명의 투표자가 있는지 확인하기 위해서
+        return obj.voter.count()
 
 class UpdateVoteBoardSerializer(serializers.ModelSerializer):
     class Meta:

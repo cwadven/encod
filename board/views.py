@@ -39,7 +39,8 @@ class VoteBoardView(APIView):
         return Response(data=serializer.data)
 
     def post(self, request, format=None):
-        serializer = VoteBoardSerializer(data=request.data)
+        #context={"request": request}가 있어야 image의 전체 줄이 나온다
+        serializer = VoteBoardSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
