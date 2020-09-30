@@ -44,11 +44,11 @@ class VoteBoardView(APIView):
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(data={"detail":"boardid missing"} , status=status.HTTP_400_BAD_REQUEST)
 
 class VoteBoardDetailView(APIView):
     serializer_class = VoteBoardSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     # 작성자만 처리 가능할 수 있도록 하는 함수 따로 설정 board가 작성자인지 판단후 작성자면 board 출력 아니면 None
     def find_own_board(self, item_id, author):
@@ -59,7 +59,7 @@ class VoteBoardDetailView(APIView):
             else:
                 return None
         except:
-            return None
+            return False
 
     def get(self, request, item_id, format=None):
         try:
@@ -125,7 +125,8 @@ class VoteBoardDetailView(APIView):
             board = self.find_own_board(item_id, request.user)
             if board == None:
                 return Response(data={"detail":"not Authorized"}, status=status.HTTP_400_BAD_REQUEST)
-
+            elif board == False:
+                return Response(data={"detail":"no vote article"}, status=status.HTTP_404_NOT_FOUND)
         except:
             return Response(data={"detail":"no vote article"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -145,7 +146,8 @@ class VoteBoardDetailView(APIView):
             board = self.find_own_board(item_id, request.user)
             if board == None:
                 return Response(data={"detail":"not Authorized"}, status=status.HTTP_400_BAD_REQUEST)
-
+            elif board == False:
+                return Response(data={"detail":"no vote article"}, status=status.HTTP_404_NOT_FOUND)
         except:
             return Response(data={"detail":"no vote article"}, status=status.HTTP_404_NOT_FOUND)
         
