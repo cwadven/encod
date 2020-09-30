@@ -13,3 +13,10 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Write permissions are only allowed to the author of the Board.
         return obj.author == request.user
+
+class IsSuperUser(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        else:
+            return bool(request.user and request.user.is_superuser)
