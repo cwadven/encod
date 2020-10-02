@@ -104,7 +104,7 @@ class BoardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Board
-        fields = ('id', 'title', 'voter_count', 'contents', 'winner_id', 'ended', 'voted', 'created_at', 'updated_at', )
+        fields = ('id', 'title', 'voter_count', 'contents', 'winner_id', 'ended', 'voted', 'created_at', 'updated_at',)
 
     #obj는 Board의 objects 들이다
     def get_voter_count(self, obj): 

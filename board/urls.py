@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter # class 를 경로 지정하기
 from . import views
 
 router = DefaultRouter(trailing_slash=False) #view에 있는 함수(클래스를 가져오기 위해서는 router 사용)
-router.register('board', views.BoardViewset)
+router.register('board', views.BoardViewset, 'boardlist')
 # router.register('voteboard', views.VoteBoardView)
 
 urlpatterns = [

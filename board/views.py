@@ -7,17 +7,37 @@ from .serializers import *
 from rest_framework import viewsets
 from rest_framework import permissions
 from .permissions import IsOwnerOrReadOnly, IsSuperUser
-from django.db.models import Count
 from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+
+from django.db.models import Count, Case, When, BooleanField
 
 # Create your views here.
 class BoardViewset(viewsets.ModelViewSet):
-    queryset = Board.objects.all() #id만큼 가져오기
+    # queryset = Board.objects.all() #id만큼 가져오기
     serializer_class = BoardSerializer
     #관리자만 작성 가능
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly, IsSuperUser)
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter,] #DjangoFilterBackend 사용
-    search_fields = ['ended',]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend] #DjangoFilterBackend 사용
+    filterset_fields = ['ended', ]
+
+    # 내가 지금 했는지 판별 get_queryset을 modelviewset에서 이용하려면 url에 3번째 파라미터에 '이름'을 넣어줘야 한다
+    # 직접 받는 쿼리를 self의 매게변수를 이용하여 voted라는 GET 정보를 받으면  내꺼 기준으로 필터링 됨!
+    def get_queryset(self):
+        user = self.request.user
+        if self.request.GET.get('voted'):
+            try:
+                if bool(int(self.request.GET.get('voted'))):
+                    return Board.objects.filter(voter__in=[user.id])
+                else:
+                    return Board.objects.exclude(voter__in=[user.id])
+            except:
+                if bool(self.request.GET.get('voted').lower() == 'true'):
+                    return Board.objects.filter(voter__in=[user.id])
+                else:
+                    return Board.objects.exclude(voter__in=[user.id])
+        else:
+            return Board.objects.all()
 
     def perform_create(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         serializer.save(author=self.request.user)

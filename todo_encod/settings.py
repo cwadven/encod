@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
 
+    #필터링 기능 추가
+    'django_filters',
+
     #cors 문제 해결
     'corsheaders',
 ]
