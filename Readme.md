@@ -15,7 +15,7 @@
 http://127.0.0.1:8000/rest-auth/registration
 
 #### Request
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - username : 아이디
 - password1 : 비밀번호
 - password2 : 비밀번호 확인
@@ -33,7 +33,7 @@ user : { "username": "아이디", "email":"이메일", "nickname": "닉네임" }
 
 ### 로그인 (POST)
 http://127.0.0.1:8000/rest-auth/login
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - username : 아이디
 - password : 비밀번호
 
@@ -50,7 +50,7 @@ http://localhost:8000/accounts/user
 **[해더s]**
 - Authorization : jwt ~~~~~~~~~~~
 
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - nickname : 닉네임
 
 #### Response
@@ -70,7 +70,7 @@ http://127.0.0.1:8000/rest-auth/password/change
 **[해더s]**
 - Authorization : jwt ~~~~~~~~~~~
 
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - new_password1 : 비밀번호
 - new_password2 : 비밀번호 확인
 
@@ -140,6 +140,13 @@ http://localhost:8000/board/(boardId)
 - Authorization : jwt ~~~~~~~~~~~
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
 
+**[Params]**
+[필수사항 아님]
+- ended=0 혹은 false : 진행중 투표게시판
+- ended=1 혹은 true : 끝난 투표게시판
+- voted=0 혹은 false : 투표 참가하지 않은 투표게시판
+- voted=1 혹은 true : 투표 참가한 투표게시판
+
 #### Response
 {<br>
     "id": 1, (해당 게시글의 id)<br>
@@ -177,7 +184,7 @@ http://localhost:8000/board
 - Authorization : jwt ~~~~~~~~~~~
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
 
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - title : 제목 [필수는 아님]
 - ended : true 혹은 false (완료되었는지 default는 false 이다) [필수는 아님]
 
@@ -217,7 +224,7 @@ http://localhost:8000/board/(boardId)
 **[해더s]**
 - Authorization : jwt ~~~~~~~~~~~
 
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - title : 제목 [필수는 아님]
 - ended : true 혹은 false (완료되었는지 default는 false 이다) [필수는 아님]
 
@@ -245,7 +252,7 @@ http://127.0.0.1:8000/voteboard
 **[해더s]**
 - Authorization : jwt ~~~~~~~~~~~
 
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - boardid (어느 투표 게시글에 속하는 것인지) [필수]
 - title : 제목 [필수는 아님]
 - image : 이미지 [필수는 아님]
@@ -349,7 +356,7 @@ http://127.0.0.1:8000/voteboard/(voteboardid)
 **[해더s]**
 - Authorization : jwt ~~~~~~~~~~~
 
-**[파라미터]** --> form-data
+**[Body]** --> form-data
 - title : 제목 [필수는 아님]
 - image : 이미지 [필수는 아님]
 
