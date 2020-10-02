@@ -102,6 +102,13 @@ http://localhost:8000/board
 - Authorization : jwt ~~~~~~~~~~~
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
 
+**[Params]**
+[필수사항 아님]
+- ended=0 혹은 false : 진행중 투표게시판
+- ended=1 혹은 true : 끝난 투표게시판
+- voted=0 혹은 false : 투표 참가하지 않은 투표게시판
+- voted=1 혹은 true : 투표 참가한 투표게시판
+
 #### Response
 [<br>
     {<br>
@@ -139,13 +146,6 @@ http://localhost:8000/board/(boardId)
 **[헤더s]** --> form-data
 - Authorization : jwt ~~~~~~~~~~~
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
-
-**[Params]**
-[필수사항 아님]
-- ended=0 혹은 false : 진행중 투표게시판
-- ended=1 혹은 true : 끝난 투표게시판
-- voted=0 혹은 false : 투표 참가하지 않은 투표게시판
-- voted=1 혹은 true : 투표 참가한 투표게시판
 
 #### Response
 {<br>
