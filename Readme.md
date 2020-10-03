@@ -62,6 +62,21 @@ http://localhost:8000/accounts/user
 
 <hr>
 
+### 회원 삭제 (DELETE)
+http://localhost:8000/accounts/user
+❌ 제약조건 : 로그인 한 사람만 접근 가능
+
+#### Request
+**[해더s]**
+- Authorization : jwt ~~~~~~~~~~~
+
+#### Response
+{<br>
+    detial:'user deleted'
+} 
+
+<hr>
+
 ### 비밀번호 수정 (POST)
 http://127.0.0.1:8000/rest-auth/password/change
 ❌ 제약조건 : 로그인 한 사람만 접근 가능
@@ -422,3 +437,4 @@ http://localhost:8000/hotboard
 }
 
 <hr>
+
