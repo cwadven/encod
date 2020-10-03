@@ -15,8 +15,13 @@ class Board(TimeStampedModel):
     voter = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='voter_total', blank=True)
     ended = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.title
+
+    
 
 class VoteBoard(TimeStampedModel):
     boardid = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='contents')

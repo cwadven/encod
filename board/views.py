@@ -38,6 +38,7 @@ class BoardViewset(viewsets.ModelViewSet):
                     return Board.objects.exclude(voter__in=[user.id])
         else:
             return Board.objects.all()
+        # .annotate(q_count=Count('voter')).order_by("-q_count") 추후에 추가
 
     def perform_create(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         serializer.save(author=self.request.user)
