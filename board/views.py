@@ -46,6 +46,20 @@ class BoardViewset(viewsets.ModelViewSet):
     def perform_update(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         serializer.save(author=self.request.user)
 
+class HotBoardView(APIView):
+    serializer_class = BoardSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsSuperUser)
+
+    def get(self, request):
+        board = Board.objects.filter(ended=False).annotate(q_count=Count('voter')).order_by("-q_count")[0]
+
+        serializer = BoardSerializer(
+            board, context={"request": request}
+        )
+
+        data=serializer.data
+        return Response(data=data, status=status.HTTP_200_OK)
+
 class VoteBoardView(APIView):
     # queryset = VoteBoard.objects.all()
     serializer_class = VoteBoardSerializer

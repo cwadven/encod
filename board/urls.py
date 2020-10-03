@@ -12,6 +12,7 @@ router.register('board', views.BoardViewset, 'boardlist')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('hotboard', views.HotBoardView.as_view(), name='hot_board'),
     path('voteboard', views.VoteBoardView.as_view(), name='vote_board'),
     path('voteboard/<int:item_id>', views.VoteBoardDetailView.as_view(), name='vote_detail_board'),
 ]
