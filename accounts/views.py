@@ -33,3 +33,11 @@ class _UpdateView(APIView):
             return Response(data[0]["fields"], status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request):
+        try:
+            profile = Profile.objects.get(username=self.request.user)
+            profile.delete()
+            return Response(data={"detail":"user deleted"} , status=status.HTTP_202_ACCEPTED)
+        except:
+            return Response(data={"detail":"something get wrong"} , status=status.HTTP_400_BAD_REQUEST)
