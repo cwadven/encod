@@ -10,6 +10,59 @@
 3. python manage.py createsuperuser (따로 연락 바람 aws로 데이터베이스 묶음)
 4. python manage.py runserver
 
+~~~
+추가적인 기능을 위해서
+가상환경에 있는 라이브러리중 rest_auth의
+app_settings.py
+serializers.py
+views.py
+코드 수정 필요
+
+app_settings.py
+JWTSerializer2 = import_callable(
+    serializers.get('JWT_SERIALIZER', DefaultJWTSerializer2))
+추가
+
+serializers.py
+class JWTSerializer2(serializers.Serializer):
+    """
+    Serializer for JWT authentication.
+    """
+    token = serializers.CharField()
+    user = serializers.SerializerMethodField()
+    superuser = serializers.BooleanField()
+
+    def get_user(self, obj):
+        """
+        Required to allow using custom USER_DETAILS_SERIALIZER in
+        JWTSerializer. Defining it here to avoid circular imports
+        """
+        rest_auth_serializers = getattr(settings, 'REST_AUTH_SERIALIZERS', {})
+        JWTUserDetailsSerializer = import_callable(
+            rest_auth_serializers.get('USER_DETAILS_SERIALIZER', UserDetailsSerializer)
+        )
+        user_data = JWTUserDetailsSerializer(obj['user'], context=self.context).data
+        return user_data
+추가
+
+views.py
+from .app_settings import ( 안에
+JWTSerializer2 추가
+
+또한
+
+Class LoginView() 쪽에서
+def get_response_serializer(self):
+    if getattr(settings, 'REST_USE_JWT', False):
+        response_serializer = JWTSerializer2
+    else:
+        response_serializer = TokenSerializer
+    return response_serializer
+
+JWTSerializer를 JWTSerializer2로 수정
+
+~~~
+
 ## API 사용 방법
 ### 회원가입 (POST)
 http://127.0.0.1:8000/rest-auth/registration
