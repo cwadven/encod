@@ -26,7 +26,7 @@ SECRET_KEY = 'c#*janeex^bn_$@76c3u)fc@wbnr9%9x-+#pljqh+kk7fa*opq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["15.164.97.53"]
+ALLOWED_HOSTS = ["15.164.97.53", "dalgona.shop"]
 
 
 # Application definition
