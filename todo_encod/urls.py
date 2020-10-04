@@ -11,13 +11,17 @@ from rest_auth.views import (
     PasswordResetView, PasswordResetConfirmView
 )
 
+from django.views.generic import TemplateView
+
 #jwt 토큰 사용
 # from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token, refresh_jwt_token
 
 from django.views.generic import TemplateView
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     #게시글 접근
+    path('', TemplateView.as_view(template_name='index.html'),name='index'),
+
     path('', include('board.urls')),
     path('accounts/', include('accounts.urls')),
 
