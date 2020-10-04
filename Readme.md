@@ -7,7 +7,7 @@
 0. python -m venv myvenv (가상환경 생성)
 1. python source myvenv/scripts/activate (가상환경 실행)
 2. pip install -r requirements.txt
-3. python manage.py createsuperuser (따로 연락 바람 aws로 데이터베이스 묶음)
+3. python manage.py collectstatic
 4. python manage.py runserver
 
 ~~~
