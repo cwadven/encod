@@ -197,6 +197,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'client/static')
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 APPEND_SLASH=False
 
 # CORS 접속 가능한 리스트 추가
