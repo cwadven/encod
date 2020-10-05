@@ -21,8 +21,9 @@ http://dalgona.shop/
 - Server : nginx (uwsgi)
 
 ## 디자이너
-👤 ???
-- Github : ???
+👤 김가영
+- Github : https://github.com/joanna-hash
+- Tool : Figma
 
 ## 환경 구축
 0. python -m venv myvenv (가상환경 생성)
