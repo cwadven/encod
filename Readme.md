@@ -3,6 +3,27 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
+## 완성 결과
+<img alt="finish" src="https://github.com/cwadven/encod/blob/master/%EB%8B%AC%EA%B3%A0%EB%82%98.png?raw=true" />
+
+### 서비스 주소
+http://dalgona.shop/
+
+## 개발자
+👤 김수연
+- Github : https://github.com/su100
+- Frontend : React
+
+👤 이창우
+- Github : https://github.com/cwadven
+- Backend : Django Rest Framework
+- Service : AWS ec2 (Ubuntu), RDS (mysql)
+- Server : nginx (uwsgi)
+
+## 디자이너
+👤 ???
+- Github : ???
+
 ## 환경 구축
 0. python -m venv myvenv (가상환경 생성)
 1. python source myvenv/scripts/activate (가상환경 실행)
