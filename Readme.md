@@ -1,4 +1,4 @@
-<h1 align="center">EN;COD 👨‍💻</h1>
+<h1 align="center">📄 투표게시판 EN;COD 👨‍💻</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000" />
 </p>
