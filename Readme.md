@@ -107,6 +107,7 @@ user : { "username": "아이디", "email":"이메일", "nickname": "닉네임" }
 
 ### 로그인 (POST)
 http://127.0.0.1:8000/rest-auth/login
+
 **[Body]** --> form-data
 - username : 아이디
 - password : 비밀번호
@@ -118,6 +119,7 @@ http://127.0.0.1:8000/rest-auth/login
 
 ### 회원정보 수정 (PUT)
 http://localhost:8000/accounts/user
+
 ❌ 제약조건 : 로그인 한 사람만 접근 가능
 
 #### Request
@@ -138,6 +140,7 @@ http://localhost:8000/accounts/user
 
 ### 회원 삭제 (DELETE)
 http://localhost:8000/accounts/user
+
 ❌ 제약조건 : 로그인 한 사람만 접근 가능
 
 #### Request
@@ -153,6 +156,7 @@ http://localhost:8000/accounts/user
 
 ### 비밀번호 수정 (POST)
 http://127.0.0.1:8000/rest-auth/password/change
+
 ❌ 제약조건 : 로그인 한 사람만 접근 가능
 
 #### Request
@@ -266,6 +270,7 @@ http://localhost:8000/board/(boardId)
 
 ### 투표 게시글 쓰기 (POST)
 http://localhost:8000/board
+
 ❌ 제약조건 : superuser만 작성 가능
 
 #### Request
@@ -294,6 +299,7 @@ http://localhost:8000/board
 
 ### 투표 게시글 삭제 (DELETE)
 http://localhost:8000/board/(boardId)
+
 ❌ 제약조건 : superuser만 작성 삭제
 
 #### Request
@@ -307,6 +313,7 @@ NONE
 
 ### 투표 게시글 수정 (PUT)
 http://localhost:8000/board/(boardId)
+
 ❌ 제약조건 : superuser만 작성 수정
 
 #### Request
@@ -335,6 +342,7 @@ http://localhost:8000/board/(boardId)
 ## 투표 기능
 ### 투표 컨텐츠 생성 (POST)
 http://127.0.0.1:8000/voteboard
+
 ❌ 제약조건 : 투표 게시글의 작성자만 작성 가능 (투표 게시글은 superuser만 생성 가능하기 때문에 결국 superuser야 한다)
 
 #### Request
@@ -362,6 +370,7 @@ http://127.0.0.1:8000/voteboard
 
 ### 투표 컨텐츠 전부 가져오기 (GET)
 http://127.0.0.1:8000/voteboard
+
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
 
 #### Request
@@ -387,6 +396,7 @@ http://127.0.0.1:8000/voteboard
 
 ### 투표 컨텐츠 특정 가져오기 (GET)
 http://127.0.0.1:8000/voteboard/(voteboardid)
+
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
 
 #### Request
@@ -409,6 +419,7 @@ http://127.0.0.1:8000/voteboard/(voteboardid)
 
 ### 투표 컨텐츠에 투표하기 (POST)
 http://127.0.0.1:8000/voteboard/(voteboardid)
+
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
 ❌ 제약조건 : jwt로 로그인한 사람만 투표 가능
 
@@ -438,7 +449,9 @@ http://127.0.0.1:8000/voteboard/(voteboardid)
 
 ### 특정 투표 컨텐츠 정보 수정하기 (PUT)
 http://127.0.0.1:8000/voteboard/(voteboardid)
+
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
+
 ❌ 제약조건 : 투표 게시글의 작성자만 수정 가능 (투표 게시글은 superuser만 생성 가능하기 때문에 결국 superuser야 한다)
 
 #### Request
@@ -465,7 +478,9 @@ http://127.0.0.1:8000/voteboard/(voteboardid)
 
 ### 특정 투표 컨텐츠 정보 수정하기 (DELETE)
 http://127.0.0.1:8000/voteboard/(voteboardid)
+
 (이게 있어야 로그인자가 투표를 했는지 안했는지 알 수 있습니다)
+
 ❌ 제약조건 : 투표 게시글의 작성자만 삭제 가능 (투표 게시글은 superuser만 생성 가능하기 때문에 결국 superuser야 한다)
 
 #### Request
