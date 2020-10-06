@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.conf.urls import url
-from django.urls import path, include
+from django.urls import path, include, re_path
 import board.urls
 import accounts.urls
 from django.conf import settings
@@ -19,8 +19,11 @@ from django.views.generic import TemplateView
 from django.views.generic import TemplateView
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    #게시글 접근
+
+    #REACT로 만든 index.html 게시글 접근
     path('', TemplateView.as_view(template_name='index.html'),name='index'),
+    #REACT ROUTER 역할 처럼 다시 들어올수 있도록 설정하기
+    re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name="index.html")), 
 
     path('', include('board.urls')),
     path('accounts/', include('accounts.urls')),
@@ -34,7 +37,6 @@ urlpatterns = [
     # path("rest-auth/", include('rest_auth.urls')),
 
     path('rest-auth/login', LoginView.as_view(), name='rest_login'),
-    # URLs that require a user to be logged in with a valid session / token.
     path('rest-auth/logout', LogoutView.as_view(), name='rest_logout'),
     path('rest-auth/user', UserDetailsView.as_view(), name='rest_user_details'),
     path('rest-auth/password/change', PasswordChangeView.as_view(), name='rest_password_change'),
