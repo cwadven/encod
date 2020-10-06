@@ -59,6 +59,14 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+#react routes
+REACT_ROUTES = [
+    'login',
+    'signup',
+    'admin',
+    'my',
+]
+
 # 회원가입 시, 입력 요소 변경
 AUTH_USER_MODEL = 'accounts.Profile' #유저 모델로 사용하기
 

@@ -15,15 +15,15 @@ from django.views.generic import TemplateView
 
 #jwt 토큰 사용
 # from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token, refresh_jwt_token
+routes = getattr(settings, 'REACT_ROUTES', [])
 
-from django.views.generic import TemplateView
 urlpatterns = [
     # path('admin/', admin.site.urls),
 
     #REACT로 만든 index.html 게시글 접근
-    path('', TemplateView.as_view(template_name='index.html'),name='index'),
+    # path('', TemplateView.as_view(template_name='index.html'),name='index'),
     #REACT ROUTER 역할 처럼 다시 들어올수 있도록 설정하기
-    re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name="index.html")), 
+    url(r'^(%s)?$' % '|'.join(routes), TemplateView.as_view(template_name="index.html"),name='index'),
 
     path('', include('board.urls')),
     path('accounts/', include('accounts.urls')),
