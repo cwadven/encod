@@ -6,9 +6,6 @@
 ## 완성 결과
 <img alt="finish" src="https://github.com/cwadven/encod/blob/master/%EB%8B%AC%EA%B3%A0%EB%82%98.png?raw=true" />
 
-### 서비스 주소
-http://dalgona.shop/
-
 ## 개발자
 👤 김수연
 - Github : https://github.com/su100
