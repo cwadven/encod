@@ -25,9 +25,10 @@
 ## 환경 구축
 0. python -m venv myvenv (가상환경 생성)
 1. python source myvenv/scripts/activate (가상환경 실행)
-2. pip install -r requirements.txt
-3. python manage.py collectstatic
-4. python manage.py runserver
+2. pip install -r requirements.txt (모듈 설치)
+3. python manage.py collectstatic (정적 파일 관리)
+4. python manage.py createsuperuser (슈퍼유저 생성)
+5. python manage.py runserver
 
 ~~~
 추가적인 기능을 위해서
@@ -81,6 +82,8 @@ def get_response_serializer(self):
 JWTSerializer를 JWTSerializer2로 수정
 
 ~~~
+
+<hr>
 
 ## API 사용 방법
 ### 회원가입 (POST)
