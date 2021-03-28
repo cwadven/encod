@@ -50,7 +50,7 @@ class JWTSerializer2(serializers.Serializer):
     """
     token = serializers.CharField()
     user = serializers.SerializerMethodField()
-    superuser = serializers.BooleanField()
+    is_superuser = serializers.BooleanField()
 
     def get_user(self, obj):
         """
@@ -61,6 +61,8 @@ class JWTSerializer2(serializers.Serializer):
         JWTUserDetailsSerializer = import_callable(
             rest_auth_serializers.get('USER_DETAILS_SERIALIZER', UserDetailsSerializer)
         )
+        # 진짜 슈퍼 유저인지 확인 하는 i
+        obj['is_superuser'] = obj['user']['.......'].is_superuser()
         user_data = JWTUserDetailsSerializer(obj['user'], context=self.context).data
         return user_data
 추가
